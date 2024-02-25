@@ -59,9 +59,18 @@ always_ff @(posedge clk) begin : next_state //Lógica de siguiente estado
 					destiny <= destiny;
 				end
 			end
-			read_data: state <= store_result;
-			store_result: <= idle;
-			default : state <= idle;
+			read_data: begin
+				state <= store_result;
+				destiny <= destiny;
+			end
+			store_result: begin 
+				state <= idle;
+				destiny <= destiny;
+			end
+			default : begin
+				state <= idle;
+				destiny <= destiny;
+			end
 		endcase
 	end
 end
